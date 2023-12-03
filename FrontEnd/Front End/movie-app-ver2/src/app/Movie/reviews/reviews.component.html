@@ -1,0 +1,76 @@
+<div class="container">
+    <div class="reviewForm">
+        <img src="assets/images/review.png" width="200px">
+    </div>
+    <div class="reviewForm">
+        <br><br>
+        <form (ngSubmit)="addReview()">
+            <div class="form-group">
+               <label for="movieCode">Movie Code</label>
+               <input type="text" 
+               [(ngModel)]="review.movieCode" name="movieCode" class="form-control" readonly
+               id="{{mCode}}" 
+               #movieCode="ngModel" required
+               placeholder="Enter  movieCode">
+               <div  *ngIf="(movieCode.invalid && movieCode.touched)"  
+                  class="alert alert-danger">movieCode is required</div>
+            </div>
+            <div class="form-group">
+               <label for="reviewerName">Reviewer Name </label>
+               <input type="text" 
+               [(ngModel)]="review.reviewerName" name="reviewerName" class="form-control" readonly
+               id="{{reviewerName}}" 
+               #reviewerName="ngModel" required
+               >
+               <div  *ngIf="(reviewerName.invalid && reviewerName.touched)"  
+                  class="alert alert-danger">reviewerName is required</div>
+            </div>
+            <div class="form-group">
+               <label for="ratings">Ratings</label>
+               <select id="ratings" name="ratings"
+               [(ngModel)]="review.ratings"   #ratings="ngModel" required
+               class="form-control">
+               <option></option>
+               <option>1</option>
+               <option>2</option>
+               <option>3</option>
+               <option>4</option>
+               <option>5</option>
+
+               </select>
+               <div  *ngIf="(ratings.invalid && ratings.touched)"   class="alert alert-danger">ratings is required
+               </div>
+            </div>
+            <div class="form-group">
+                <label for="reviewMsg">Review </label>
+                <textarea class="form-control" id="reviewMsg" rows="3" 
+                [ngModelOptions]="{standalone: true}"  [(ngModel)]="review.reviewMsg">
+                </textarea>
+              </div>
+            <div class="form-group">
+
+               <button type="submit" class="btn btn-primary" 
+                  [disabled]="ratings.invalid || reviewerName.invalid">Add Review</button>
+               &nbsp;
+               <button type="button" (click)="cancel()"    class="btn btn-primary">Cancel</button>
+            </div>
+         </form>
+</div>
+<br><br><br>
+<div class="reviewForm">
+  <table class="table table-bordered">
+   <tr style="background-color: blueviolet;">
+   <th>Reviewer</th>
+   <th>Review</th>
+   <th>Rating</th>
+</tr>
+<tr *ngFor="let r of reviewList">
+        <th>{{r.reviewerName}}</th>
+      <th>{{r.reviewMsg}}</th>
+      <th>{{r.ratings}}
+      </th>
+  
+</tr>
+  </table>
+</div>
+</div>

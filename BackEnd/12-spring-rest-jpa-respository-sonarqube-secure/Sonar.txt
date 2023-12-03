@@ -1,0 +1,8 @@
+clean org.jacoco:jacoco-maven-plugin:prepare-agent install
+
+http://localhost:9000/account
+ -> security -> generate token
+maven -build
+sonar:sonar -Dsonar.login=sqa_fdd0b18c3116c75c5946190dc89b031a1d7156e8
+
+--> after that chk the project the project will be created

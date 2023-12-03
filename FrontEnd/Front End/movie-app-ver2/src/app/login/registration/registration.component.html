@@ -1,0 +1,42 @@
+<div class="container">
+    <form  (ngSubmit)="submit()"    [formGroup]="registrationForm" novalidate>
+        <label for="username" class="form-control" >User Name</label>
+        <input id="username" type="text" class="form-control" name="id"
+          formControlName="username" required>
+          
+        <div *ngIf="forms['username'].errors?.['required'] && forms['username'].touched" >
+            username is required
+         </div> 
+         <div *ngIf="forms['username'].errors?.['email'] && forms['username'].touched" >
+          Not a valid email id
+       </div>
+         <label for="password" class="form-control" >Password</label>
+         <input id="password" type="password" class="form-control" name="password"
+           formControlName="password" required>
+         <div *ngIf="forms['password'].errors?.['minlength'] && forms['password'].touched" >
+            password minumum length must be 5 
+          </div>
+          <div *ngIf="forms['password'].errors?.['required'] && forms['password'].touched" >
+            password is required
+          </div>
+          <label for="confpassword" class="form-control" >confpassword</label>
+         <input id="confpassword" type="password" class="form-control" name="confpassword"
+           formControlName="confpassword" required>
+           
+         <div *ngIf="forms['confpassword'].errors?.['required']  && forms['confpassword'].touched" >
+            confpassword is required
+          </div>
+          <div *ngIf="forms['confpassword'].errors?.['confirmPasswordValidator']  && forms['confpassword'].touched" >
+            pwd and confpassword must match
+          </div>
+          <label for="role" class="form-control" >Role</label>
+          <input id="role" type="text" class="form-control" name="role"
+            formControlName="role" required>
+          <div *ngIf="forms['role'].errors && forms['role'].touched" >
+             Role is required
+           </div> 
+           <button type="submit"  class="btn btn-success"
+            [disabled]="!registrationForm.valid" >Submit</button>
+
+            </form>
+</div>

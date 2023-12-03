@@ -1,0 +1,19 @@
+<div class="container">
+    <div *ngFor="let m of movieList">
+        <div class="col-md-3  card">
+            <h5 class="card-header">{{m.movieName | lowercase}}</h5>
+            <div class="card-body">
+
+              <a class="fa fa-window-close pull-right" (click)="deleteMovie(m.movieCode)" aria-hidden="true" >
+              </a>
+              <a href="addMovie/{{m.movieCode}}"
+               class="fa fa-edit pull-right"></a>
+               <a href="reviews/{{m.movieCode}}"
+              >Reviews</a>
+              <h5 class="card-title">{{m.language}}</h5>
+              <img src={{m.poster}} width="200px">
+
+            </div>
+          </div>
+    </div>
+</div>
